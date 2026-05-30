@@ -1,4 +1,3 @@
-// @ts-check
 import { create, lazyLoad } from "../dsl-vdom/extensions/router.js";
 
 const router = create({
