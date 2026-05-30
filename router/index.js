@@ -1,5 +1,5 @@
 // @ts-check
-import { create, lazyLoad } from "../DSL-VDOM/extensions/router.js";
+import { create, lazyLoad } from "../dsl-vdom/extensions/router.js";
 
 const router = create({
     prefix: '',

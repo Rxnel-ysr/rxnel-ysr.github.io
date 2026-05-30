@@ -1,5 +1,5 @@
 // @ts-check
-import { html } from "../DSL-VDOM/core/vdom.js";
+import { html } from "../dsl-vdom/core/vdom.js";
 
 const App = () => {
     return html.div({
