@@ -11,4 +11,4 @@ hmr({
         port: 4040,
     },
     main: "/src/App.js",
-}, app, env.deploy.prod);
+}, app, !env.deploy.prod);
