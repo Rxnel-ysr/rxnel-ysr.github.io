@@ -10,10 +10,10 @@ app.render(App);
 hmr(
     {
         ws: {
-            port: 4040,
+            port: env.app.hmr.port,
         },
         main: "/src/App.js",
     },
     app,
-    !env.deploy.prod,
+    !env.deploy.prod && env.app.hmr.enabled,
 );
