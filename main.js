@@ -1,4 +1,4 @@
-import { createRoot, hmr } from "./dsl-vdom/core/vdom.hooks.js";
+import { createRoot, hmr } from "yandom";
 import App from "./src/App.js";
 import env from "./env.json" with { type: "json" };
 import router from "./router/index.js";

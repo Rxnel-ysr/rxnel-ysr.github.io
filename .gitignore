@@ -1,4 +1,6 @@
+.gitignore
 package.json
-/dsl-vdom/core/file-watcher.js
-/dsl-vdom/server
+/dsl-vdom
 public/input.css
+.env.json
+env.json
