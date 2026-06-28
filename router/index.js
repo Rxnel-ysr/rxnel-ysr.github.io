@@ -4,14 +4,12 @@ import Loader from "../src/components/Loader.js";
 const router = createRouter({
     prefix: '',
     element: 'a',
-    titleId: 'title',
     cacheExp: 0,
     placeholder: Loader
 })
 
 router.route({
     uri: '/',
-    title: 'Ronel\'s Portfolio',
     component: lazyLoad(() => import("../src/Pages/Homepage.js")),
     static: true,
     cache: {
@@ -24,7 +22,6 @@ router.route({
 
 router.route({
     uri: '/projects',
-    title: 'Ronel\'s Portfolio - Previous Works',
     component: lazyLoad(() => import('../src/Pages/Project.js')),
     static: true,
     cache: {
@@ -37,7 +34,6 @@ router.route({
 
 router.route({
     uri: '/certificates',
-    title: 'Ronel\'s Portfolio - Certificates',
     component: lazyLoad(() => import('../src/Pages/Certificate.js')),
     static: true,
     cache: {
