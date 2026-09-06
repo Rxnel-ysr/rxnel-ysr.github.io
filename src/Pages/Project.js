@@ -52,7 +52,7 @@ const Projects = () => {
         },
         {
             title: "LALAA",
-            stack: ["Python","Ollama"],
+            stack: ["Python", "Ollama"],
             desc: ["A python tool wrapper built on top of ollama python api. An Agent that capable of executing command, searching internet, summarize a page and operating a browser."],
             status: "personal",
             image: '/public/assets/projects/lalaa.png',
@@ -60,7 +60,7 @@ const Projects = () => {
         },
         {
             title: "Vault",
-            stack: ["Python","SQLite"],
+            stack: ["Python", "SQLite"],
             desc: ["Encrypted, chunked, safe storage tool can store any files and store it inside SQLite safely.", "Originates from mere boredom, and implemented out of free will."],
             status: "personal",
             image: '/public/assets/projects/vault.png',
@@ -100,7 +100,7 @@ const Projects = () => {
     const filtered = useMemo(() => {
         return activeType === 'all'
             ? projects
-            : projects.filter(p => p.type.includes(activeType) );
+            : projects.filter(p => p.type.includes(activeType));
     }, [activeType]);
 
     const statusStyle = {
@@ -134,7 +134,7 @@ const Projects = () => {
     return html.$([
         html.section({ id: 'project', class: "max-w-4xl mx-auto px-6 py-32 flex flex-col gap-16" }, [
 
-            html.div({ class: "flex flex-col gap-3" }, [
+            html.div({ class: "rt-scroll-in flex flex-col gap-3", "data-dir": "up", "clean": true }, [
                 html.span({ class: "text-comment" }, ["// projects"]),
                 html.h1({ class: "text-5xl font-black tracking-tighter text-white" }, ["Previous Works"]),
                 html.p({ class: "text-zinc-500 text-sm max-w-md" }, [
@@ -161,17 +161,20 @@ const Projects = () => {
                     const isEven = i % 2 === 0;
 
                     return html.div({
-                        class: "group relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden hover:border-violet-500/40 hover:shadow-[0_0_40px_#7c3aed18] transition-all duration-500"
+                        class: "rt-tilt-card rt-scroll-in group relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden hover:border-violet-500/40 hover:shadow-[0_0_40px_#7c3aed18] transition-all duration-500",
+                        "data-dir": isEven ? "left" : "right",
                     }, [
+                        html.div({ class: "rt-glare rounded-2xl" }, []),
+
                         html.div({ class: "absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" }, []),
 
                         html.div({ class: "absolute inset-0 bg-gradient-to-br from-violet-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" }, []),
 
-                        html.div({ class: `relative flex flex-col ${isEven ? "md:flex-row" : "md:flex-row-reverse"} min-h-56` }, [
+                        html.div({ class: `rt-tilt-inner relative flex flex-col ${isEven ? "md:flex-row" : "md:flex-row-reverse"} min-h-56` }, [
 
                             image
                                 ? html.div({ class: "md:w-2/5 h-48 md:h-auto overflow-hidden" }, [
-                                    html.img({ src: image, alt: title, class: "w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500" }, []),
+                                    html.img({ src: image, alt: title, class: "rt-tilt-img w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500" }, []),
                                 ])
                                 : html.div({ class: `md:w-2/5 h-48 md:h-auto bg-gradient-to-br ${isEven ? "from-violet-900/40 to-purple-900/20" : "from-indigo-900/40 to-violet-900/20"} flex items-center justify-center` }, [
                                     html.span({ class: "text-5xl font-black text-white/5 tracking-tighter select-none" }, [title[0]]),

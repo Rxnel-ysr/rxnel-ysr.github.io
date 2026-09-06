@@ -3,7 +3,7 @@ import { html } from "yandom";
 const Playground = () => {
     return html.$([
         html.section({ id: 'playground', class: "max-w-4xl mx-auto px-6 py-20 flex flex-col gap-16 mb-20" }, [
-            html.div({ class: "flex flex-col gap-3" }, [
+            html.div({ class: "rt-scroll-in flex flex-col gap-3", "data-dir": "up", "clean": true }, [
                 html.span({ class: "text-comment" }, ["// playgrounds"]),
                 html.h1({ class: "text-5xl font-black tracking-tighter text-white" }, ["Games you can play with"]),
                 html.p({ class: "text-zinc-500 text-sm" }, [

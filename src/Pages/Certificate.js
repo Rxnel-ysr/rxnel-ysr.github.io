@@ -44,7 +44,7 @@ const Certificates = () => {
             ?.addEventListener('click', () => {
                 document.getElementById('cert-lightbox').style.display = 'none';
             });
-        
+
         let clb = document.getElementById('cert-lightbox');
         document.addEventListener('keydown', (e) => {
             if (e.key == 'Escape' && clb.style.display != 'none') clb.style.display = 'none';
@@ -53,7 +53,6 @@ const Certificates = () => {
 
     return html.$([
 
-        // ── Lightbox ─────────────────────────────────────────────────
         html.div({
             id: "cert-lightbox",
             class: "fixed inset-0 z-50 items-center justify-center p-8",
@@ -69,9 +68,9 @@ const Certificates = () => {
             ]),
         ]),
 
-        // ── Page ─────────────────────────────────────────────────────
         html.section({ class: "max-w-4xl mx-auto px-6 py-32 flex flex-col gap-16" }, [
-            html.div({ class: "flex flex-col gap-3" }, [
+
+            html.div({ class: "rt-scroll-in flex flex-col gap-3", "data-dir": "up", "clean": true  }, [
                 html.span({ class: "text-comment" }, ["// certificates"]),
                 html.h1({ class: "text-5xl font-black tracking-tighter text-white" }, ["Certificates"]),
                 html.p({ class: "text-zinc-500 text-sm" }, [
@@ -80,21 +79,23 @@ const Certificates = () => {
             ]),
 
             html.div({ class: "grid grid-cols-1 sm:grid-cols-2 gap-8 w-full" }, [
-                ...certificates.map(({ title, issuer, date, image, link }) =>
+                ...certificates.map(({ title, issuer, date, image, link }, i) =>
                     html.div({
-                        class: "group relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden hover:border-violet-500/40 hover:shadow-[0_0_40px_#7c3aed20] transition-all duration-500 flex flex-col"
+                        class: "rt-tilt-card rt-scroll-in group relative rounded-2xl border border-white/10 bg-white/5 overflow-hidden hover:border-violet-500/40 hover:shadow-[0_0_40px_#7c3aed20] transition-all duration-500 flex flex-col",
+                        "data-dir": i % 2 === 0 ? "left" : "right",
                     }, [
+                        html.div({ class: "rt-glare rounded-2xl" }, []),
+
                         // top accent line
                         html.div({ class: "absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" }, []),
 
-                        // image — tall so cert is actually readable
                         image
                             ? html.div({
                                 class: "relative overflow-hidden cursor-zoom-in",
                                 style: "height: 280px;",
                                 onclick: `(function(){var l=document.getElementById('cert-lightbox');l.style.display='flex';l.querySelector('img').src='${image}'})()`,
                             }, [
-                                html.img({ src: image, alt: title, class: "w-full h-full object-cover object-top opacity-90 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500" }, []),
+                                html.img({ src: image, alt: title, class: "rt-tilt-img w-full h-full object-cover object-top opacity-90 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-500" }, []),
                                 html.div({ class: "absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300", style: "background: rgba(0,0,0,0.35)" }, [
                                     html.span({ class: "text-white text-xs tracking-widest uppercase border border-white/40 px-4 py-1.5 rounded-full backdrop-blur-sm" }, ["Click to expand"]),
                                 ]),
@@ -106,8 +107,7 @@ const Certificates = () => {
                                 html.span({ class: "text-zinc-600 text-xs tracking-widest uppercase" }, ["No preview"]),
                             ]),
 
-                        // footer
-                        html.div({ class: "p-5 flex items-center justify-between gap-4" }, [
+                        html.div({ class: "rt-tilt-inner p-5 flex items-center justify-between gap-4" }, [
                             html.div({ class: "flex flex-col gap-0.5 min-w-0" }, [
                                 html.span({ class: "text-white text-sm font-bold tracking-tight truncate" }, [title]),
                                 html.span({ class: "text-zinc-500 text-xs truncate" }, [issuer]),

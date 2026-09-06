@@ -1,5 +1,6 @@
 import { html, createRouter, lazyLoad } from "yandom";
 import Loader from "../src/components/Loader.js";
+import NotFound from "../src/Pages/NotFound.js";
 
 const router = createRouter({
     prefix: '',
@@ -56,5 +57,7 @@ router.route({
         remember: true,
     }
 })
+
+router.fallback(NotFound, { hook: 0 });
 
 export default router;

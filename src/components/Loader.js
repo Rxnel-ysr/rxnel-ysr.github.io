@@ -2,14 +2,12 @@ import { html } from "yandom";
 
 const Loader = () => {
     setTimeout(() => {
-        // auto-hide when page is ready
-        window.addEventListener('load', () => {
-            const loader = document.getElementById('page-loader');
-            if (!loader) return;
-            loader.style.opacity = '0';
-            loader.style.pointerEvents = 'none';
-            setTimeout(() => loader.remove(), 600);
-        });
+        const status = document.getElementById('loader-status');
+        let n = 0;
+        const tick = setInterval(() => {
+            n = (n + Math.floor(Math.random() * 400) + 40) % 0xFFF;
+            if (status) status.textContent = `decrypting 0x${n.toString(16).toUpperCase().padStart(3, '0')}`;
+        }, 90);
     }, 0);
 
     return html.div({
@@ -68,7 +66,7 @@ const Loader = () => {
         // logo + status
         html.div({ class: "flex flex-col items-center gap-2" }, [
             html.span({ class: "text-xs tracking-[0.4em] uppercase text-violet-400", style: "animation: flicker 3s ease-in-out infinite;" }, ["rxnel-ysr"]),
-            html.span({ class: "text-xs tracking-widest text-zinc-600 uppercase", style: "animation: blink 1s step-end infinite;" }, ["initializing..."]),
+            html.span({ id: "loader-status", class: "text-xs tracking-widest text-zinc-600 uppercase font-mono" }, ["decrypting 0x000"]),
         ]),
 
     ]);
